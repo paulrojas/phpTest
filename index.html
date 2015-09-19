@@ -34,6 +34,7 @@
                 },
                 select: function( event, ui ) {
                     location = "#" + ui.item.slug;
+                    return false;
                 },
                 open: function() {
                     $( this ).removeClass( "ui-corner-all" ).addClass( "ui-corner-top" );
@@ -42,7 +43,12 @@
                     $( this ).removeClass( "ui-corner-top" ).addClass( "ui-corner-all" );
                 }
             });
-        });
+        })
+        .autocomplete( "instance" )._renderItem = function( ul, item ) {
+            return $( "<li>" )
+                    .append( "<a>" + item.location + "<br>Population:" + item.population + "</a>" )
+                    .appendTo( ul );
+        };
     </script>
 </head>
 <body>
