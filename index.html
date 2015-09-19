@@ -28,8 +28,12 @@
                     });
                 },
                 minLength: 3,
+                focus: function( event, ui ) {
+                    $( this ).val( ui.item.location );
+                    return false;
+                },
                 select: function( event, ui ) {
-
+                    location = "#" + ui.item.slug;
                 },
                 open: function() {
                     $( this ).removeClass( "ui-corner-all" ).addClass( "ui-corner-top" );
