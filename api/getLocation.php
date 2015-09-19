@@ -1,8 +1,8 @@
 <?php
-
+include "../config.php";
 include "../classes/DB.php";
 
-$db = new DB('wallethub', 'wallethub', '$$P4$$W0rd!#');
+$db = new DB($dbname, $user, $pass);
 
 $q = $_GET['q'];
 
