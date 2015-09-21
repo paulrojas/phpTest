@@ -13,7 +13,7 @@
         #location { width: 25em; }
     </style>
     <script>
-        $(function() {
+        $(document).ready(function() {
             $( "#location" ).autocomplete({
                 source: function( request, response ) {
                     $.ajax({
@@ -48,15 +48,42 @@
                         .append( "<a>" + item.location + "<br>Population:" + item.population + "</a>" )
                         .appendTo( ul );
             };
+
+            $('#btnOk').click(function(){
+                $.post('./api/getPrevNext.php', {elements: $('#elements').val(), page: $('#page').val()},
+                    function (data) {
+                        $('#result').html(data);
+                    }
+                );
+            });
         });
     </script>
 </head>
 <body>
 
 <div class="ui-widget">
+    <p>Test 1</p>
     <label for="location">Enter your location: </label>
     <input id="location">
 </div>
 
+<div class="ui-widget">
+    <p>Test 2</p>
+
+    <a href="http://testing.paulrojas.me/phpTest/WordPress/location-search/">http://testing.paulrojas.me/phpTest/WordPress/location-search/</a>
+</div>
+
+<div class="ui-widget">
+    <p>Test 3</p>
+
+    <label for="elements">Enter the elements string: </label>
+    <input id="elements">
+
+    <label for="page">Enter the page: </label>
+    <input id="page">
+
+    <button id="btnOk">Get Prev & Next</button>
+    <div id="result"></div>
+</div>
 </body>
 </html>
